@@ -25,9 +25,11 @@ data = json.dumps({
 })
 
 response = requests.post(url, data=data, headers=headers)
+json = response.json()
 
-print(response.text)
-
+print("owner,staked,referral")
+for row in json['rows']:
+	print(",".join([row['owner'], str(row['staked']), row['referral']]))
 
 """
 curl --request POST \
